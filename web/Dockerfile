@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.10-slim
 
 ENV PYTHONNUNBUFFERED True
 ENV APP_HOME /app
