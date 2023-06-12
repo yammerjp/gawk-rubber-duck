@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>gawk rubber duck</title>
+    <style>
+      body {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 16px;
+      }
+      .query-container {
+        display: flex;
+      }
+      .search-button-container {
+        width: 5em;
+      }
+      .query-input-container {
+        flex: 1;
+      }
+      p {
+        background: #eeeeee;
+        border-radius: 8px;
+        padding: 8px
+      }
+
+      h1, h2, .query-container, p {
+        padding: 8px
+      }
+      
+      #query {
+        width: 100%;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🐥gawk rubber duck🐥</h1>
+    <div class="query-container">
+      <div class="query-input-container">
+        <input id="query">
+      </div>
+      <div class="search-button-container">
+      <input type="button" id="search-button" value="talk">
+      </div>
+    </div>
+    <div>
+      <h2>answer</h2>
+      <div id="answer">
+      </div>
+      <h2>source</h2>
+      <div id="source">
+      </div>
+    </div>
+    <script>
+      const queryInput = document.getElementById('query')
+      const searchButton = document.getElementById('search-button')
+      const answerElement = document.getElementById('answer')
+      const sourceElement = document.getElementById('source')
+      searchButton.addEventListener('click', async () => {
+        answerElement.innerHTML = "<p>🧐...</p>"
+        sourceElement.innerHTML = ""
+        const res = await fetch(
+          `/api/search`,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({query: queryInput.value})
+
+          }
+        )
+        if (!res.ok) {
+          console.error('failed to fetch')
+          return
+        }
+        const obj = await res.json()
+        answerNodeElement = document.createElement("p")
+        answerNodeElement.innerText = obj.llama_index_response.response
+        answerElement.innerHTML = ""
+        answerElement.append(answerNodeElement)
+
+        obj.llama_index_response.source_nodes.map(n => n.node.text).forEach(txt => {
+          const sourceNodeElement = document.createElement("p")
+          sourceNodeElement.innerText = txt
+          sourceElement.append(sourceNodeElement)
+        })
+        console.log(obj)
+      })
+    </script>
+  </body>
+</html>

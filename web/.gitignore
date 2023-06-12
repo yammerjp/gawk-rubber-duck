@@ -1,0 +1,5 @@
+.env
+.env.bash
+db/**/*
+storage/titles/**/*
+__pycache__/**/*
