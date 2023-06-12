@@ -11,7 +11,10 @@
         display: flex;
       }
       .search-button-container {
-        width: 5em;
+        width: 4em;
+      }
+      .search-button-container > input {
+        width: 100%;
       }
       .query-input-container {
         flex: 1;
@@ -19,10 +22,9 @@
       p {
         background: #eeeeee;
         border-radius: 8px;
-        padding: 8px
       }
 
-      h1, h2, .query-container, p {
+      h1, h2, .query-container, p, .help {
         padding: 8px
       }
       
@@ -32,9 +34,13 @@
       h1 {
         text-align: center;
       }
+      .help {
+        text-align: right;
+      }
     </style>
   </head>
   <body>
+    <div class="help"><a href="/help">What is this?</a></div>
     <h1>🐥gawk rubber duck🐥</h1>
     <div class="query-container">
       <div class="query-input-container">
