@@ -15,3 +15,7 @@ $ docker run -p 8080:8080 --env OPENAI_API_KEY=${OPENAI_API_KEY} --env FLASK_LIM
 - LlamaIndex
 - Flask
 - Flask-Limiter
+
+---
+
+Explanatory article in Japanese: [LlamaIndexを使って、gawkプログラミングの相棒を作る - memo.yammer.jp](https://memo.yammer.jp/posts/gawk-rubber-duck)
